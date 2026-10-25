@@ -1,6 +1,6 @@
 ---
 name: rephrase
-description: Rephrase pasted text to be clearer and more empathetic while preserving Dong's voice. Use when the user pastes text and asks to rephrase, reword, soften, clarify, or rework a message — typically Slack messages, MR comments, emails, or other written communication.
+description: Rephrase pasted text to be clearer and more empathetic while preserving the user's voice. Use when the user pastes text and asks to rephrase, reword, soften, clarify, or rework a message — typically Slack messages, MR comments, emails, or other written communication.
 ---
 
 # Rephrase
