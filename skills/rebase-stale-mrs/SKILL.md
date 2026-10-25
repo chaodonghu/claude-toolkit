@@ -12,7 +12,7 @@ Runs `~/.claude/skills/rebase-stale-mrs/rebase.sh`. The script:
 3. Skips if the MR is not behind its target branch (`diverged_commits_count == 0`).
 4. Triggers `PUT /projects/:id/merge_requests/:iid/rebase` — GitLab performs the rebase server-side. No local clones, no force-push from this machine.
 
-Each MR is rebased onto its own target branch (in Dong's workflow this is typically `staging`, with `main`/`master` as the per-repo fallback by virtue of how the MR was opened).
+Each MR is rebased onto its own target branch (in the author's workflow this is typically `staging`, with `main`/`master` as the per-repo fallback by virtue of how the MR was opened).
 
 ## How to invoke
 
