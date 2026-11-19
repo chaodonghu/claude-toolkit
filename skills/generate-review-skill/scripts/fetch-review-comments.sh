@@ -10,7 +10,7 @@ set -euo pipefail
 DAYS="${1:-90}"
 PARALLELISM="${2:-8}"
 OUTPUT_FILE="${3:-}"
-BOT_PATTERN="bot|service-|async-agent|gitlab|tfbuddy|dependabot|renovate|prjiracheck|droid"
+BOT_PATTERN="bot|service-|gitlab|dependabot|renovate|droid"
 NOISE_PATTERN="vercel\.com|(^|\n)\s*(Preview|Production) deployment:|(^|\n)\s*Inspect:\s*https://|(^|\n)\s*Build logs:\s*https://|(^|\n)\s*✅\s*Ready in"
 
 # ---------------------------------------------------------------------------

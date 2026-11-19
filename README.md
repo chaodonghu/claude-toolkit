@@ -27,14 +27,16 @@ Symlinks every skill and workflow into `~/.claude/`. Re-run after adding or pull
 | [rebase-on-target](skills/rebase-on-target/SKILL.md) | Catches one MR branch up to its target when it has fallen behind: fetch, rebase in the right worktree, sanity check, force-push with lease. Conflicts stop the line. | "rebase from main", "it's behind, catch it up" |
 | [worktree](skills/worktree/SKILL.md) | Launches one or more tasks in new git worktrees via `workmux`. | `/worktree` |
 
-### Code review and QA
+### Code review, QA and local dev
 
 | Skill | What it does | Trigger |
 | --- | --- | --- |
 | [augmented-review](skills/augmented-review/SKILL.md) | Human-first review guided by research-backed strategies, then two LLM arms: one investigates your hotspots, one does a mechanical sweep. LLM results are held until you have formed your own view. | `/augmented-review [range, !MR or paths]` |
+| [cross-lab-review](skills/cross-lab-review/SKILL.md) | Claude and Codex review the same changeset blind, attack each other's findings, then defend their own. Reports what survived, what was killed, what is still contested and what one lab missed. Needs the Codex CLI and MCP server. | `/cross-lab-review <mr-url, !IID, branch or --staged> [focus]` |
 | [generate-review-skill](skills/generate-review-skill/SKILL.md) | Mines review comments from your GitLab MRs and turns the recurring themes into personalized review checklist skills. | "generate a review skill" |
 | [resolve-reviews](skills/resolve-reviews/SKILL.md) | Pulls the open threads on the current MR, fixes each finding, reacts with a fitting emoji and replies inside the thread in your conversational voice. | "fix the review comments", "address the MR comments" |
 | [qa-script](skills/qa-script/SKILL.md) | Writes a numbered manual QA run-book and demo-recording script from the ticket and the diff. | "how do I test this", "what do I record for the demo" |
+| [local-dev-doctor](skills/local-dev-doctor/SKILL.md) | Ordered diagnostic for a web, API and worker stack: hung requests, port conflicts, NextAuth login loops, env pulled from the wrong environment, worktree or branch mismatch. Stops at the first check that explains the symptom. | "local dev is stuck", "port is in use", "login keeps failing" |
 
 ### GitLab and Jira
 
@@ -43,6 +45,7 @@ Symlinks every skill and workflow into `~/.claude/`. Re-run after adding or pull
 | [gitlab](skills/gitlab/SKILL.md) | Reference for `glab`: MRs, issues, pipelines, projects and more. | any GitLab task |
 | [jira-cli](skills/jira-cli/SKILL.md) | Reference for `acli jira`: view, create with ADF descriptions, edit, search with JQL and filters, transition. | any Jira task |
 | [mr-draft](skills/mr-draft/SKILL.md) | Writes or updates an MR description from the repo's own template, plain language, no AI slop, and keeps the screenshots and recording links already there. | "draft MR", "fill in the MR description" |
+| [oncall-ticket](skills/oncall-ticket/SKILL.md) | Files or fixes a Jira ticket under the current month's on-call epic, in Jira wiki markup instead of markdown. You approve the final content before it is created. | "file an on-call ticket", "fix the formatting on this jira ticket" |
 | [open-pr](skills/open-pr/SKILL.md) | Writes a PR description from conversation context and opens PR creation in the browser. | `/open-pr` |
 | [rebase-mrs](skills/rebase-mrs/SKILL.md) | Scans your open MRs across projects, server-side rebases the unapproved-but-behind ones, and flags approved-but-stale MRs and conflicts. Schedule with `/loop 1h /rebase-mrs --working-hours-only` or launchd (`skills/rebase-mrs/launchd/install.sh`). | `/rebase-mrs` (`--dry-run` to preview) |
 | [rebase-mrs-review](skills/rebase-mrs-review/SKILL.md) | Reads the rebase-mrs state file and gives a triage briefing: what was rebased, what is stale, what conflicted, proposed next actions. Read-only. | `/rebase-mrs-review` |
@@ -56,10 +59,18 @@ Symlinks every skill and workflow into `~/.claude/`. Re-run after adding or pull
 | [teach](skills/teach/SKILL.md) | Teacher mode. Checks you deeply understand the current session, with incremental verification before moving on. | `/teach`, "walk me through this" |
 | [handoff](skills/handoff/SKILL.md) | Writes or updates a handoff document so the next agent with fresh context can continue the work. | "write a handoff" |
 
+### Briefs and watches
+
+| Skill | What it does | Trigger |
+| --- | --- | --- |
+| [daily-brief](skills/daily-brief/SKILL.md) | Start-of-day and end-of-day brief: what needs you, your open MRs and tickets, the channels you follow, today's calendar and the next thing to pick. Read-only, and only reports what changed since the last run. | `/daily-brief morning\|evening\|now`, "catch me up" |
+| [upstream-watch](skills/upstream-watch/SKILL.md) | Watches the upstream work a feature depends on: commits, MRs, epics, API contract drift and Slack channels. Reports only what changed since the last entry in its watch log, and tracks the triggers you are waiting on. | "anything new on the backend?" |
+
 ### Orchestration and meta
 
 | Skill | What it does | Trigger |
 | --- | --- | --- |
+| [cmux-fanout](skills/cmux-fanout/SKILL.md) | Fans out 2 to 4 tickets across cmux workspaces. Each ticket gets its own worktree, branch and Claude agent that implements to a draft MR while this session orchestrates and reviews. | "fan out", "tackle these tickets at once" |
 | [coordinator](skills/coordinator/SKILL.md) | Orchestrates multiple worktree agents via `workmux`: spawn, monitor, communicate, merge. | `/coordinator` |
 | [create-skill](skills/create-skill/SKILL.md) | Interactively authors a new Claude Code skill. | `/create-skill [personal\|project] [name]` |
 
