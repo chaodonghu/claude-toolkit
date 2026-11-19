@@ -1,6 +1,6 @@
 ---
 name: resolve-reviews
-description: Pulls open review threads on the current branch's GitLab MR (async-agent, design review, human reviewers), fixes each finding in code, reacts to the reviewer's comment with a fitting emoji, and replies inside each thread in the user's conversational voice (no em dashes, first-person, grounded in what they actually tested) rather than posting a new top-level comment. Use when the user says "go through the async agent comments", "fix the review comments", "address the MR comments", "resolve the review threads", or pastes reviewer feedback and asks to fix and reply.
+description: Pulls open review threads on the current branch's GitLab MR (review bots, design review, human reviewers), fixes each finding in code, reacts to the reviewer's comment with a fitting emoji, and replies inside each thread in the user's conversational voice (no em dashes, first-person, grounded in what they actually tested) rather than posting a new top-level comment. Use when the user says "go through the review bot comments", "fix the review comments", "address the MR comments", "resolve the review threads", or pastes reviewer feedback and asks to fix and reply.
 metadata:
   tags:
     - gitlab
@@ -12,14 +12,14 @@ allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git b
 
 # Resolve Reviews
 
-Work through the open review threads on an MR: understand each finding, fix it in code, and reply **in that thread**. This skill exists because the user does this almost weekly (async-agent + design review + human reviewers) and has had to correct the same things repeatedly: reply *in the thread* not as a separate comment, write the reply in their actual conversational voice (not a robotic acknowledgement + spec), and react to the reviewer's comment with a fitting emoji before replying.
+Work through the open review threads on an MR: understand each finding, fix it in code, and reply **in that thread**. This skill exists because the user does this almost weekly (review bots + design review + human reviewers) and has had to correct the same things repeatedly: reply *in the thread* not as a separate comment, write the reply in their actual conversational voice (not a robotic acknowledgement + spec), and react to the reviewer's comment with a fitting emoji before replying.
 
 ## When to Use
 
-- "go through the async agent comments and solve them"
+- "go through the review bot comments and solve them"
 - "fix the review comments" / "address the MR comments"
 - "resolve the review threads" / "reply to the threads"
-- The user pastes reviewer feedback (often async-agent or a design-review block) and asks to fix it
+- The user pastes reviewer feedback (often from a review bot or a design-review block) and asks to fix it
 
 ## Non-Negotiable Rules
 
