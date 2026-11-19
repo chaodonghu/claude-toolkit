@@ -68,7 +68,7 @@ rg -n "NEXTAUTH_URL|CLIENT_SECRET|CLIENT_ID" apps/web/.env
 
 ### 4. Account or data not syncing after an env pull
 
-Pulling env from a shared secret store can bring along production-shaped values. The usual footgun is a flag that is off in the shared config and has to be on locally, such as a background sync or sweeper toggle, which breaks first-login sync.
+Pulling env from a shared secret store can bring along production-shaped values. The usual footgun is a flag that is off in the shared config and has to be on locally, such as a background sync toggle, which breaks first-login sync.
 
 ```bash
 rg -n "ENABLED|_URL|_ENV" apps/api/.env   # look for flags and hosts that point at the wrong environment
